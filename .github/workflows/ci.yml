@@ -17,15 +17,11 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.10"
-          cache: 'pip'
-          # 新增：指定PyPI国内镜像源，解决云端网络问题
-          cache-dependency-path: |
-            **/requirements*.txt
+          # 彻底删除cache-dependency-path，只保留核心配置
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          # 用国内镜像源安装pytest，解决云端网络超时
           pip install pytest -i https://pypi.tuna.tsinghua.edu.cn/simple
 
       - name: Run unit tests
